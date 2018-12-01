@@ -14,8 +14,6 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 import HeaderLogoTitle from '../components/headerlogotitle'; 
 import firebase from 'firebase'
 
-import { MonoText } from '../components/StyledText';
-
 import Fire from '../fire'; 
 
 export default class HomeScreen extends React.Component {
@@ -59,9 +57,6 @@ export default class HomeScreen extends React.Component {
   }
 
   render() {
-
-
-
     return (
       
       <View style={styles.container}>
@@ -69,7 +64,10 @@ export default class HomeScreen extends React.Component {
         <View style={styles.welcomeContainer}>
           
           {this.state.data.map(each => {
-        return <TouchableOpacity key = {each.phrase}>
+        return <TouchableOpacity key = {each.phrase} onPress={() => this.props.navigation.navigate('Guess',{
+                  phrase: each.phrase,
+                  img: each.link
+        })}>
                  <Image
                    key = {each.phrase}
                    source={{uri: `${each.link}`}}
@@ -78,9 +76,6 @@ export default class HomeScreen extends React.Component {
                  />  
                  </TouchableOpacity>
           })}
-        
-            
-            
           </View>
         </ScrollView>
 

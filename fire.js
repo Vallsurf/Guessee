@@ -24,6 +24,7 @@ getimage = async (imgurl) => {
     var imagesRef = storageRef.child('images/steven-erixon-738508-unsplash.jpg');
     
     const url = await imagesRef.getDownloadURL()
+    console.log(url)
     return url; 
 }
 
@@ -34,7 +35,6 @@ getData = async () => {
         doc.forEach(record => {
             const link = record.data().link 
             const phrase = record.data().phrase
-            
             test.push({link: link, phrase: phrase})
     }));
     
