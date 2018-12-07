@@ -8,6 +8,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Dimensions
 } from 'react-native';
 import { WebBrowser } from 'expo';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
@@ -61,8 +62,11 @@ export default class HomeScreen extends React.Component {
       
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+
         <View style={styles.welcomeContainer}>
-          
+        <View style={styles.ScreenTitleCont}>
+        <Text style={styles.iOSTitle}>Recent</Text>  
+        </View>
           {this.state.data.map(each => {
         return <TouchableOpacity key = {each.phrase} onPress={() => this.props.navigation.navigate('Guess',{
                   phrase: each.phrase,
@@ -135,7 +139,7 @@ const styles = StyleSheet.create({
   },
   welcomeContainer: {
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 0,
     marginBottom: 20,
   },
   welcomeImage: {
@@ -204,4 +208,18 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#2e78b7',
   },
+  iOSTitle: {
+    marginBottom: 13,
+    fontSize: 48,
+    lineHeight: 48,
+    fontWeight: 'bold',
+    color: '#353535',
+    backgroundColor: 'rgba(0,0,0,0)',
+    textAlign: "left"
+},
+ScreenTitleCont:{
+  width: Dimensions.get('window').width * 0.9, 
+  justifyContent: "flex-start",
+  alignContent: "flex-start",
+}
 });
